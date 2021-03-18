@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-class UserDetailsServiceImp implements UserDetailsService
+public class UserDetailsServiceImp implements UserDetailsService
 {
 	@Autowired
 	private UserRepository userRepository;
