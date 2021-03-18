@@ -24,8 +24,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-				.antMatchers("/home", "/signup", "/css/**", "/js/**").permitAll()
+				.antMatchers("/home", "/signup", "/css/**", "/js/**")
+				.permitAll()
+				.antMatchers("/product/add").access("hasRole('ROLE_ADMIN')")
+				.antMatchers("/product", "/message", "/post")
+				.access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 				.anyRequest().authenticated();
+
 
 		http.formLogin()
 				.defaultSuccessUrl("/message", true)
